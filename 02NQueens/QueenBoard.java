@@ -28,6 +28,17 @@ public class QueenBoard{
 		return false;
 	}
 
-	public boolean addQueen(int row, int col){;}
-	public boolean removeQueen(int row, int col){;}
+	private boolean addQueen(int row, int col){
+		for(int index = 0; index < board.length; index++){
+			board[row][index] = 1;
+			board[index][col] = 1;
+		for(int r = row; r < board.length; r++){
+			if(board[r][col] = 0){
+				board[r][col] = "Q";
+				board[r++][col] += 1;
+		for 
+;}
+	private boolean removeQueen(int row, int col){
+
+;}
 }
