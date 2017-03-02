@@ -46,11 +46,19 @@ public class Maze{
             System.out.println("\033[2J\033[1;1H"+this);
             wait(20);
         }
-	if(maze[row][col] == "S"){
-		maze[row][col] = "@"
-	return true; 
-        //COMPLETE SOLVE
-
+	if(maze[row][col] == "E"){
+		return true;}
+	if (maze[row][col] = " "){
+		maze[row][col] = "@";
+	boolean check = true;
+ 	solve(row, col - 1) || solve(row + 1, col) || solve (row, col + 1) || solve(row - 1, col);
+	if (check){
+		return true;
+	}
+	else{ 
+		maze[row][col];
+	}
+}
         return false; //so it compiles
     }
 
