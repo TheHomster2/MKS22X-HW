@@ -8,15 +8,34 @@ public class Maze{
 
 	public Maze(String filename){
         File text = new File(filename);
-
+        int row = 1;
+        int col = 0;
         try{
         Scanner inf = new Scanner(text);
         int lineNumber = 1;
         while(inf.hasNextLine()){
         String line = inf.nextLine();
+        row++;
+        col = line.length();
     }
     	maze = new char[row][col];
-            
+    	int numRows = 0; 
+    	int numCols = 0;
+    	Scanner inf2 = new Scanner(text);
+    	while (inf2.hasNextLine()){
+    			String line = inf2.nextLine();
+    			numCols = 0;
+    			while (line.length() > 0){
+    				maze[numRows][numCols] = line.charAt(0);
+    				line = line.substring(1);
+    				numCols++;
+    			}
+    			numRows++;
+    	}
+	}
+
+	catch(FileNotFoundException e){
+		System.out.println("File not found");
 	}
 }
 
@@ -74,6 +93,7 @@ public class Maze{
 	}
         return false;
     }
+}
 }
 
 
