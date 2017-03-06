@@ -7,14 +7,18 @@ public class Maze{
 	private boolean animate;
 
 	public Maze(String filename){
-		  //instead of a try/catch, you can throw the FileNotFoundException.
-        File text = new File(filename);// can be a path"/full/path/to/file.txt" 
+        File text = new File(filename);
+
+        try{
         Scanner inf = new Scanner(text);
         int lineNumber = 1;
         while(inf.hasNextLine()){
-            String line = inf.nextLine();
-            System.out.println(line);
+        String line = inf.nextLine();
+    }
+    	maze = new char[row][col];
+            
 	}
+}
 
 	private void wait(int millis){
          try {
@@ -34,10 +38,15 @@ public class Maze{
 
 	public boolean solve(){
 	 int startr=-1,startc=-1;
-
-            //Initialize starting row and startint col with the location of the S. 
-
-            maze[startr][startc] = ' ';//erases the S, and start solving!
+	 for (int row = 0; row < maze.length(); row++){
+	 	for (int col = 0; col < maze[row].length(); col++){
+	 		if(maze[row][col] = "S"){
+	 		startr = row;
+	 		startc = col;
+	 	}
+	 }
+}
+            maze[startr][startc] = ' ';
             return solve(startr,startc);
     }
 
@@ -47,20 +56,26 @@ public class Maze{
             wait(20);
         }
 	if(maze[row][col] == "E"){
-		return true;}
-	if (maze[row][col] = " "){
+		return true;
+	}
+
+	if (maze[row[col] = " "){
 		maze[row][col] = "@";
-	boolean check = true;
- 	solve(row, col - 1) || solve(row + 1, col) || solve (row, col + 1) || solve(row - 1, col);
+	}
+
+	boolean check = solve(row, col - 1) || solve(row + 1, col) || solve (row, col + 1) || solve(row - 1, col);
+
 	if (check){
 		return true;
 	}
+
 	else{ 
-		maze[row][col];
+		maze[row][col] = ".";
 	}
-}
-        return false; //so it compiles
+        return false;
     }
+}
+
 
 
 
