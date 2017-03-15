@@ -1,4 +1,4 @@
-public class Partition{
+public class Quick{
 int part(int[] data, int start, int end){
 	if (left >= right){
 	    return;
