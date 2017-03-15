@@ -78,21 +78,89 @@ public class USACO{
     		return depth * 72 * 72;
     	}
 
-}
 
 	private int[][] pasture;
+	private int[][] temp; //Help f/ Ahbab
 	private int time;
-	private int 
+	private int row;
+	private int col;
+	private int startR;
+	private int startC;
+	private int endR;
+	private int endC;
 	
-
-
-
 	public int silver(String filename){
+	Scanner inf = null;
+	try{
 		File text = new File(filename);
-		try{
-			Scanner inf = new Scanner(file);
+	    inf = new Scanner(text);
+	}
+
+	catch(FileNotFoundException f){
+	    System.out.println("Invalid filename or path.");
+	    System.exit(0);
+	}
+
+	row = inf.nextInt();
+	col = inf.nextInt();
+	time = inf.nextInt();
+	pasture = new int[row][col];
+	temp = new int [row][col];
+	String result = "";
+
+	for(int r = 0; r < row; r++){
+	    result = inf.next();
+		for(int c = 0; c < col; c++){
+		    if(result.charAt(c) == '.'){
+		    	pasture[r][c] = 0;
+		    	temp[r][c] = 0;
+		    }
+		    else{
+		    	pasture[r][c] = -1;
+		    	temp[r][c] = -1;
+		    }
 		}
 	}
+
+	startR = inf.nextInt() - 1;
+	startC = inf.nextInt() - 1;
+	endR = inf.nextInt() - 1;
+	endC = inf.nextInt() - 1;
+	return solve();
+}
+
+	private int solve(){
+		pasture[startR][startC] = 1;
+		int total = 0;
+		for(int steps = 0; steps < time; steps++){
+			for (int r = 0; row < row; r++){
+				for (int c = 0; c < col; c++){
+					if(pasture[r][c] != -1){
+					if (r > 0 && pasture[r - 1][c] != -1){
+						total += pasture[r - 1][c];
+					}
+					if (r < row - 1 && pasture[r + 1][c] != -1){
+						total += pasture[r + 1][c];
+					}
+					if (c > 0 && pasture[r][c - 1] != -1){
+						total += pasture[r][c - 1];
+					}
+					if (c < col - 1 && pasture[r][c + 1] != -1){
+						total += pasture[r][c + 1];
+					}
+					temp[r][c] += total;
+						}
+					}
+				}
+				for(int r = 0; r < row; r++){
+					for (int c = 0; c < col; c++){
+						pasture[r][c] = temp[r][c];
+					}
+				}
+			}
+			return pasture[endR][endC];
+		}
+}
 
 
 
