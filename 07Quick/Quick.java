@@ -8,11 +8,11 @@ public static int part(int[] data, int start, int end){
 	int number = 0;
 	int start1 = start;
 	int end1 = end;
-	int random = (int)(Math.random() * ((end - start) + 1));
+	int random = (int)(Math.random() * (end - start + 1));
 	number = data[start + random];
 	swap(data, end1, start + random);	
 	end--;
-
+	int swap = start;
 	while (start < end){
 	    if (data[start] >= number){
 		swap(data, start, end);
@@ -23,8 +23,6 @@ public static int part(int[] data, int start, int end){
 		start++;
 	    }
 	}
-
-	int swap = start;
 
 	if (data[start] >= number){
 	    swap(data, end1, start);
@@ -39,14 +37,19 @@ public static int part(int[] data, int start, int end){
 		swap++;
     }
 	}
-return;
-//add result
+	int result = data[start];
+	return result;	 
 }
-
-	private static void swap(int[]data, int a, int b){
+	
+	public static void swap(int[]data, int a, int b){
 	int temp = data[a];
 	data[a] = data[b];
 	data[b] = temp;
+}
+
+	public static void main(String[] args){
+	int [] test = {3, 8, 1, 2, 7};
+	System.out.println(part(test, 3, 3));
 }
 }
 
