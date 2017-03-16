@@ -4,23 +4,50 @@ public static int part(int[] data, int start, int end){
 //-Only partition the elements from start to end inclusive.
 //-When done returns the index of the final position of the pivot element.      
 //    (Should be from start to end inclusive)
-	
-	int pivot = Math.random() * data[start] - 1;
-	int start1 = start - 1;
-	int end1 = end + 1;
-	if (end >= start){
-	for(int left = 0; data[left] < pivot; left++){
-		for(int right = 0; data[right] > pivot; right--){
-	if(data[left] < data[right]){
-		swap(left, right); 
+
+	int number = 0;
+	int start1 = start;
+	int end1 = end;
+	int random = (int)(Math.random() * ((end - start) + 1));
+	number = data[start + random];
+	swap(data, end1, start + random);	
+	end--;
+
+	while (start < end){
+	    if (data[start] >= number){
+		swap(data, start, end);
+		end--;
+	    }
+
+	    if (data[start] < number){
+		start++;
+	    }
 	}
-	return right;
-	part(data, positions[1], right);
-	part(data, left, positions[0]);
+
+	int swap = start;
+
+	if (data[start] >= number){
+	    swap(data, end1, start);
+	}
+	if (data[start] < number){
+	    swap(data, end1, start + 1);
+	    swap++;
+	}
+	for (int index = start1; index < end1; index++){
+	    if (data[index] == number){
+		swap(data, index, swap);
+		swap++;
     }
-private void swap(int a, int b){
+	}
+return;
+//add result
+}
+
+	private static void swap(int[]data, int a, int b){
+	int temp = data[a];
 	data[a] = data[b];
-	data[b] = data[a];
+	data[b] = temp;
+}
 }
 
 
