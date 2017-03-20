@@ -70,10 +70,10 @@ public static int part(int[] data, int start, int end){
 			return data[k];
 		}
 		if (k < index){
-			right = index - 1;
+			quickselect(data, k, start, index);
 		}
 		else{
-			left = index + 1;
+			quickselect(data, k, index, end);
 		}
 	}
 
