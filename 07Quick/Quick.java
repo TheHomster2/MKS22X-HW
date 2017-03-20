@@ -9,7 +9,7 @@ public static int part(int[] data, int start, int end){
 	int pivot = data[random];
 	swap(data, pivot, end);
 	int start1 = start;
-	
+
 	while(start < end){
 	if (data[start] >= pivot){
 		swap(data, start, end);
@@ -58,6 +58,36 @@ public static int part(int[] data, int start, int end){
 	data[a] = data[b];
 	data[b] = temp;
 }
+
+	public static int quickselect(int[]data, int k){
+		return quickselect(data, 0, data.length - 1, k);
+	}
+
+	private static int quickselect(int[]data, int k, int start, int end){
+		int index = part(data, start, end);
+
+		if (k == index){
+			return data[k];
+		}
+		if (k < index){
+			right = index - 1;
+		}
+		else{
+			left = index + 1;
+		}
+	}
+
+	public static int quicksort(int[]data){
+		return quicksort(data, 0, data.length - 1);
+	}
+
+	public static int quicksort(int[]data, int start, int end){
+		if (start >= end){
+			int index = part(data, start, end);
+			quicksort(data, start, index - 1);
+			quicksort(data, index + 1, end);
+		}
+	}
 
 	public static void main(String[] args){
 	int[] data = new int[]{9, 8, 7, 6, 5, 0, 1, 2, 3, 4};
