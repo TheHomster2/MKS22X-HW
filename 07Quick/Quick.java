@@ -5,42 +5,54 @@ public static int part(int[] data, int start, int end){
 //-When done returns the index of the final position of the pivot element.      
 //    (Should be from start to end inclusive)
 
-	int number = 0;
+	int random = start + (int)(Math.random() * (end - start + 1));
+	int pivot = data[random];
+	swap(data, pivot, end);
 	int start1 = start;
-	int end1 = end;
-	int random = (int)(Math.random() * (end - start + 1));
-	number = data[start + random];
-	swap(data, end1, start + random);	
-	end--;
-	int swap = start;
-	while (start < end){
-	    if (data[start] >= number){
+
+	while(start < end){
+	if (data[start] >= pivot){
 		swap(data, start, end);
 		end--;
-	    }
+	}
 
-	    if (data[start] < number){
+	if (data[start] < pivot){
+		swap(data, end, start + 1);
 		start++;
-	    }
+		}
+	}
+	//for those larger numbers in the beginning
+	if (data[start] >= pivot){
+		swap(data, end, start);
 	}
 
-	if (data[start] >= number){
-	    swap(data, end1, start);
+	if (data[start] < pivot){
+		swap(data, end, start + 1);
+		start1++;
 	}
-	if (data[start] < number){
-	    swap(data, end1, start + 1);
-	    swap++;
+
+	for(int index = start; index < end; index++){
+		if (data[index] < pivot){
+			swap(data, start1, index);
+			start1++;
+		}
 	}
-	for (int index = start1; index < end1; index++){
-	    if (data[index] == number){
-		swap(data, index, swap);
-		swap++;
-    }
+
+	swap(data, end, start1);
+	return start1;
+
+	/*
+	for(int index = start; index < end; index++){
+		if (data[index] < pivot){
+			swap(data, start1, index);
+			start1++;
+		}
 	}
-	int result = data[start];
-	return result;	 
+
+	swap(data, end, start1);
+	return start1;
+	*/
 }
-	
 	public static void swap(int[]data, int a, int b){
 	int temp = data[a];
 	data[a] = data[b];
@@ -48,9 +60,10 @@ public static int part(int[] data, int start, int end){
 }
 
 	public static void main(String[] args){
-	int [] test = {3, 8, 1, 2, 7};
-	System.out.println(part(test, 3, 3));
+	int[] data4 = new int[]{1,2,3,4,3,2,1,2,3,2,1,4,2,3,1,2,4,3,1,2};
+	System.out.println(part(data4, 0, data4.length - 1));
 }
+
 }
 
 
