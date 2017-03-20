@@ -77,11 +77,11 @@ public static int part(int[] data, int start, int end){
 		}
 	}
 
-	public static int quicksort(int[]data){
-		return quicksort(data, 0, data.length - 1);
+	public static void quicksort(int[]data){
+		quicksort(data, 0, data.length - 1);
 	}
 
-	public static int quicksort(int[]data, int start, int end){
+	public static void quicksort(int[]data, int start, int end){
 		if (start >= end){
 			int index = part(data, start, end);
 			quicksort(data, start, index - 1);
