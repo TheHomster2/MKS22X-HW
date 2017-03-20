@@ -9,7 +9,7 @@ public static int part(int[] data, int start, int end){
 	int pivot = data[random];
 	swap(data, pivot, end);
 	int start1 = start;
-
+	
 	while(start < end){
 	if (data[start] >= pivot){
 		swap(data, start, end);
@@ -60,11 +60,12 @@ public static int part(int[] data, int start, int end){
 }
 
 	public static void main(String[] args){
-	int[] data4 = new int[]{1,2,3,4,3,2,1,2,3,2,1,4,2,3,1,2,4,3,1,2};
-	System.out.println(part(data4, 0, data4.length - 1));
+	int[] data = new int[]{9, 8, 7, 6, 5, 0, 1, 2, 3, 4};
+	System.out.println(part(data, 0, data.length - 1));
 }
 
 }
+
 
 
 
