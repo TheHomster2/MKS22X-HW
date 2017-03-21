@@ -20,7 +20,7 @@ public class USACO{
 
 	catch(FileNotFoundException f){
 	    System.out.println("Invalid filename or path.");
-	    System.exit(0);
+	    System.exit(1);
 	}
 
 	    r = inf.nextInt();
@@ -34,9 +34,9 @@ public class USACO{
 	    	Scanner nextline = new Scanner(inf.nextLine());
 		for(int col = 0; col < c; c++){
 		    lake[row][col] = nextline.nextInt();
-		}
+			}
 	    }
-
+	    int a = 0;
 	    while(inf.hasNextLine()){
 	    Scanner lastline = new Scanner(inf.nextLine());
 	    int row = lastline.nextInt() - 1;
@@ -54,7 +54,7 @@ public class USACO{
 		return volume(e);
 }
 
-	public int stomp (int row, int col, int depth){
+	private int stomp (int row, int col, int depth){
     	int max = lake[row][col];
     	for (r = row; r < row + 3; r++){
     		for(c = col; c < col + 3; c++){
@@ -63,10 +63,11 @@ public class USACO{
     			}
     		}
     	}
-    	return lake[r][c] = max - depth;
+    	int result = max - depth;
+    	return result;
     }
 
-	public int volume (int elevation){
+	private int volume (int elevation){
     	int depth = 0;
     	for (int row = 0; r < r; r++){
     		for(int col = 0; c < c; c++){
@@ -98,7 +99,7 @@ public class USACO{
 
 	catch(FileNotFoundException f){
 	    System.out.println("Invalid filename or path.");
-	    System.exit(0);
+	    System.exit(1);
 	}
 
 	row = inf.nextInt();
@@ -160,7 +161,7 @@ public class USACO{
 			}
 			return pasture[endR][endC];
 		}
-}
+	}
 
 
 
