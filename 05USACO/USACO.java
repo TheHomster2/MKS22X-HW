@@ -95,10 +95,10 @@ public class USACO{
 	public int silver(String filename){
 	Scanner inf = null;
 	try{
-		File text = new File(filename);
+	    File text = new File(filename);
 	    inf = new Scanner(text);
 	}
-
+	
 	catch(FileNotFoundException f){
 	    System.out.println("Invalid filename or path.");
 	    System.exit(1);
@@ -134,10 +134,10 @@ public class USACO{
 
 	private int solve(){
 		pasture[startR][startC] = 1;
-		int total = 0;
 		for(int steps = 0; steps < time; steps++){
-			for (int r = 0; row < row; r++){
+			for (int r = 0; r < row; r++){
 				for (int c = 0; c < col; c++){
+					int total = 0;
 					if(pasture[r][c] != -1){
 					if (r > 0 && pasture[r - 1][c] != -1){
 						total += pasture[r - 1][c];
@@ -167,6 +167,7 @@ public class USACO{
 	public static void main (String []args){
 		USACO test = new USACO();
 		System.out.println(test.bronze("bronze1.txt"));
+		System.out.println(test.silver("silver1.txt"));
 	}
 }	
 
