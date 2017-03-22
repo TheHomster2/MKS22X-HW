@@ -1,83 +1,86 @@
-import java.util.*;
 import java.io.*;
+import java.util.*;  
 
 public class USACO{
 
-    private int [][] lake;
-	private int r;
-	private int c;
-	private int e;
-	private int numMoves;
+    private int[][] lake;
+    private int r;
+    private int c;
+    private int e;
+    private int numMoves;
 
     public USACO(){};
 
     public int bronze(String filename){
-    Scanner inf = null;
+	Scanner inf = null;
 	try{
-		File text = new File(filename);
+	    File text = new File(filename);
 	    inf = new Scanner(text);
 	}
-
+	
 	catch(FileNotFoundException f){
 	    System.out.println("Invalid filename or path.");
 	    System.exit(1);
 	}
 
-	    r = inf.nextInt();
-	    c = inf.nextInt();
-	    e = inf.nextInt();
-	    numMoves = inf.nextInt();
+		Scanner checkline = new Scanner(inf.nextLine());
+		r = Integer.parseInt(checkline.next());
+		c = Integer.parseInt(checkline.next());
+		e = Integer.parseInt(checkline.next());
+		numMoves = Integer.parseInt(checkline.next());
 
-	    lake = new int[r][c];
+		lake = new int[r][c];
 
-	    for(int row = 0; row < r; r++){
+		for(int row = 0; row < r ; row++){
 	    	Scanner nextline = new Scanner(inf.nextLine());
-		for(int col = 0; col < c; c++){
-		    lake[row][col] = nextline.nextInt();
-			}
-	    }
-	    int a = 0;
-	    while(inf.hasNextLine()){
-	    Scanner lastline = new Scanner(inf.nextLine());
-	    int row = lastline.nextInt() - 1;
-	    int col = lastline.nextInt() - 1;
-	    int depth = lastline.nextInt();
-	    int height = stomp(r, c, depth);
-		for(int r = row; r < row + 3; r++){
-			for(int c = col; c < col + 3; c++){
-		    	if(lake[r][c] > height){
-					lake[r][c] = height;
-		    		}
-				}
-	   		}
+	    	for(int col = 0; col < c; col++){
+			lake[row][col] = nextline.nextInt();
+	    	}
 		}
-		return volume(e);
+
+	while(inf.hasNextLine()){
+	    Scanner lastLine = new Scanner(inf.nextLine());
+	    int row = lastLine.nextInt() - 1;
+	    int col = lastLine.nextInt() - 1;
+	    int depth = lastLine.nextInt();
+	    int height = stomp(row, col, depth);
+
+	    for(int r = row; r < row + 3; r++){
+		for(int c = col; c < col + 3; c++){
+		    if(lake[r][c] > height){
+			lake[r][c] = height;
+		    	}
+			}	
+	    }
+	}
+	return volume(e);
 }
 
-	private int stomp (int row, int col, int depth){
-    	int max = lake[row][col];
-    	for (r = row; r < row + 3; r++){
-    		for(c = col; c < col + 3; c++){
-    			if(lake[r][c] > max - depth){
-    				max = lake[r][c];
-    			}
-    		}
-    	}
-    	int result = max - depth;
-    	return result;
+    private int stomp(int row, int col, int depth){
+	int max = lake[row][col];
+	for(int r = row; r < row + 3; r++){
+	    for(int c = col; c < col + 3; c++){
+		if (lake[r][c] > max){
+		    max = lake[r][c];
+			}
+	    }
+	}
+        int result = max - depth;
+       	return result;
+
     }
 
-	private int volume (int elevation){
-    	int depth = 0;
-    	for (int row = 0; r < r; r++){
-    		for(int col = 0; c < c; c++){
-    			if(lake[row][col] < e){
-		    		depth += (e - lake[row][col]);
-				}
-			}
+    private int volume(int elevation){
+	int depth = 0;
+	for(int row = 0; row < r; row++){
+	    for(int col = 0; col < c; col++){
+		if(lake[row][col] < e){
+		    depth += e - lake[row][col];
 		}
-    		return depth * 72 * 72;
-    	}
+	    }
+	}
+	return depth * 72 * 72;
+    }
 
 
 	private int[][] pasture;
@@ -161,7 +164,12 @@ public class USACO{
 			}
 			return pasture[endR][endC];
 		}
+
+	public static void main (String []args){
+		USACO test = new USACO();
+		System.out.println(test.bronze("bronze1.txt"));
 	}
+}	
 
 
 
