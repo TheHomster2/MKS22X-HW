@@ -44,17 +44,16 @@ public class USACO{
 	    int col = lastLine.nextInt() - 1;
 	    int depth = lastLine.nextInt();
 	    int height = stomp(row, col, depth);
-
-	    for(int r = row; r < row + 3; r++){
-		for(int c = col; c < col + 3; c++){
-		    if(lake[r][c] > height){
-			lake[r][c] = height;
-		    	}
-			}	
-	    }
+		for(int r = row; r < row + 3; r++){
+			for(int c = col; c < col + 3; c++){
+		    	if(lake[r][c] > height){
+					lake[r][c] = height;
+		    		}
+				}	
+	 	   }
+		}
+		return volume(e);
 	}
-	return volume(e);
-}
 
     private int stomp(int row, int col, int depth){
 	int max = lake[row][col];
