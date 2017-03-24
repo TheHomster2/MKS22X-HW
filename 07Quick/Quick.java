@@ -1,5 +1,7 @@
+import java.util.*;
+
 public class Quick{
-public static int part(int[] data, int start, int end){
+public static int [] part(int[] data, int start, int end){
 //-Choose a random element to be a pivot, and partition the array around it. 
 //-Only partition the elements from start to end inclusive.
 //-When done returns the index of the final position of the pivot element.      
@@ -8,6 +10,34 @@ public static int part(int[] data, int start, int end){
 	int random = start + (int)(Math.random() * (end - start + 1));
 	int pivot = data[random];
 	swap(data, pivot, end);
+	int lt = start;
+	int i = start + 1;
+	int gt = end;
+	int[] temp = new int [2];
+
+	while(i <= gt){
+		if (data[i] == pivot){
+			i++;
+		}
+
+		else if (data[i] < pivot){
+			swap(data, i, lt);
+			lt++;
+			i++;
+		}
+
+		else{
+			swap(data, i, gt);
+			gt--;
+		}
+	}
+		temp[0] = lt;
+		temp[1] = gt;
+
+		return temp;
+}
+
+	/*
 	int start1 = start;
 
 	while(start < end){
@@ -40,60 +70,64 @@ public static int part(int[] data, int start, int end){
 
 	swap(data, end, start1);
 	return start1;
+	*/
 
 	/*
 	for(int index = start; index < end; index++){
 		if (data[index] < pivot){
-			swap(data, start1, index);
-			start1++;
+			swap(data, lt, index);
+			lt++;
 		}
 	}
+*/
 
-	swap(data, end, start1);
-	return start1;
-	*/
-}
-	public static void swap(int[]data, int a, int b){
+	public static void swap(int[] data, int a, int b){
 	int temp = data[a];
 	data[a] = data[b];
 	data[b] = temp;
 }
 
-	public static int quickselect(int[]data, int k){
-		return quickselect(data, 0, data.length - 1, k);
+	public static int quickselect(int[] data, int k){
+		return quickselectH(data, 0, data.length - 1, k);
 	}
 
-	private static int quickselect(int[]data, int k, int start, int end){
-		int index = part(data, start, end);
+	private static int quickselectH(int[] data, int k, int start, int end){
+		int [] index = part(data, start, end);
 
-		if (k == index){
+		if (k == index[0]){
 			return data[k];
 		}
-		if (k < index){
-			return quickselect(data, k, start, index);
+		if (k < index[0]){
+			return quickselectH(data, k, start, index[0]);
 		}
 		else{
-			return quickselect(data, k, index, end);
+			return quickselectH(data, k, index[0], end);
 		}
 	}
 
-	public static void quicksort(int[]data){
-		quicksort(data, 0, data.length - 1);
+	public static void quicksort(int[] data){
+		quicksortH(data, 0, data.length - 1);
 	}
 
-	public static void quicksort(int[]data, int start, int end){
-		if (start >= end){
-			int index = part(data, start, end);
-			quicksort(data, start, index - 1);
-			quicksort(data, index + 1, end);
+	public static void quicksortH(int[] data, int start, int end){
+		if (start + 1 < end){
+			int [] index = part(data, start, end);
+			quicksortH(data, start, index[0]);
+			quicksortH(data, index[1], end);
 		}
+	}
+
+	public static String toString(int[] data){
+		String result = "[";
+		for (int index = 0; index < data.length; index++){
+			result += data[index] + " ";
+		}
+		result += "]";
+		return result;
 	}
 
 	public static void main(String[] args){
-	int[] data = new int[]{9, 8, 7, 6, 5, 0, 1, 2, 3, 4};
-	System.out.println(part(data, 0, data.length - 1));
-}
-
+    }
 }
 
 
