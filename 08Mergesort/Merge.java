@@ -1,12 +1,8 @@
 public class Merge{
 
 	public static void mergesort(int[] ary){
-		ary = mergesortH(ary);
-	}
-
-	public static void mergesortH(int[] ary){
 		if(ary.length <= 1){
-			return ary;
+			return;
 		}
 
 		int [] left = new int [ary.length / 2];
@@ -16,45 +12,46 @@ public class Merge{
 				left[index] = ary[index];
 			}
 			else{
-				right[index - left.length] = data[index];
+				right[index - left.length] = ary[index];
 			}
 		}
 
-		mergesortH(left);
-		mergesortH(right);
+		mergesort(left);
+		mergesort(right);
 		merge(left, right, ary);
 	}
 
 
-	public void merge(int[] a, int[] b,int[] destination){
+	public static void merge(int[] a, int[] b,int[] destination){
 		int lo = 0;
 		int hi = 0;
-		index = 0;
+		int index = 0;
 
 		while(lo < a.length && hi < b.length){
 			if(a[lo] <= b[hi]){
 				destination[index] = a[lo];
 				lo++;
-				index++
+				index++;
 			}
 			if(b[hi] < a[lo]){
 				destination[index] = b[hi];
 				hi++;
-				index++
+				index++;
 			}
 		}
 
 		while(lo < a.length){
-			for(int index = lo + hi; index < destination.length; index++){
-			destination[index] = a[lo];
+			for(int count = lo + hi; count < destination.length; count++){
+			destination[count] = a[lo];
 			lo++;
 			}
 		}	
 
 		while(hi < b.length){
-			for(int index = lo + hi; index < destination.length; index++){
+			for(int index2 = lo + hi; index2 < destination.length; index2++){
 			destination[index2] = b[hi];
 			hi++;
 			}
 		}
 	}
+}
