@@ -1,3 +1,5 @@
+	import java.util.*;
+
 public class MyLinkedList{
 
 	public LinkedList(){
@@ -33,9 +35,9 @@ public class MyLinkedList{
 	else{
 		LNode current = index;
 		for(int i = 0; i < index; i++){
-			current = current.Next();
+			current = current.next();
 		}
-	current.setNext(current.Next());
+	current.setNext(current.next());
 	}	
 	size++;
 }
@@ -45,7 +47,32 @@ public class MyLinkedList{
 
 	public String toString(){}
 
-	public int get(int index){}
-
-	public int set(int index, int newValue){}	
+	public int get(int index){
+	if(index < 0 || index > size()){
+		throw new IndexOutOfBoundsException();
+	}
+	LNode current = index;
+	for(int i = current; i < index; i++){
+		return current.next;
+	}
+	return current.value();
 }
+
+
+	public int set(int index, int newValue){
+	if(index < 0 || index > size()){
+		throw new IndexOutOfBoundsException();
+	}
+	int counter = 0;
+	while(start.hasNext()){
+		counter++;
+		if (counter == index){
+		set(newValue);
+		}
+	}
+}	
+
+
+
+	public int remove(int index){
+		if(index == 0){}
