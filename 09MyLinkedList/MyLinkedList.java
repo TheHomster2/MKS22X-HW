@@ -1,4 +1,5 @@
-	import java.util.*;
+import java.util.*;
+import java.io.*;
 
 public class MyLinkedList{
 
@@ -30,7 +31,7 @@ public class MyLinkedList{
 	return;
 }		
 	if(index == 0){
-	index == new LNode(value);
+	index = new LNode(value);
 	}
 	else{
 		LNode current = index;
@@ -71,8 +72,26 @@ public class MyLinkedList{
 		}
 	}
 }	
-
-
-
 	public int remove(int index){
-		if(index == 0){}
+		if(index < 0 || index > size()){
+		throw new IndexOutOfBoundsException();
+	}
+	
+		
+		
+}
+
+	public int indexOf(int value){
+		int index = new LNode (value);
+		LNode current = index;
+		for (int i = 0; i < index; i++){
+		while (current != null){
+			if (current.equals(value)){
+				return value;
+			}
+			current = current.next;
+		else{
+		return -1;
+			}	
+}
+}
