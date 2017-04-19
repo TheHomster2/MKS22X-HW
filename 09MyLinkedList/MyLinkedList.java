@@ -56,22 +56,18 @@ public class MyLinkedList implements Iterator<Integer>{
 		if (index < 0 || index > size()){
 		throw new IndexOutOfBoundsException();
 		}
-
 		LNode input = new LNode(value);
+		LNode current = start;
 		if (index == size()){
 		add(value);
-		}	
-		if (index == 0){
-			input.setNext(start);
-			start = input;
-			size++;
 		}
-		LNode current = start;
 		for (int track = 0; track < index - 1; track++){
-			current = current.getNext();
+			current = current.next;
 			}
-		input.setNext(current.getNext());
-		current.setNext(input);
+		input.next = current.next;
+		input.prev = current;
+		current.next = input;
+		current.next.prev = input;
 		size++;
 	}
 
