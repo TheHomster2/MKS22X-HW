@@ -100,17 +100,6 @@ public class MyLinkedList implements Iterator<Integer>{
     }
 }
 
-	public int get(int index){
-		}
-	public int set(int index, int value){
-		LNode input = new LNode(value);
-		if (index < 0 || index >= size()){
-			throw new IndexOutOfBoundsException;
-		}
-		if (
-	public int indexOf(int value){}
-		
-
 
 
 
