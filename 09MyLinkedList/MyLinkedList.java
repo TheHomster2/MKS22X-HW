@@ -53,7 +53,7 @@ public class MyLinkedList implements Iterator<Integer>{
 	}
 
 	public void add(int index, int value){
-		if (index < 0 || index > size()){
+		if (index < 0 || index >= size()){
 		throw new IndexOutOfBoundsException();
 		}
 		LNode input = new LNode(value);
@@ -74,9 +74,16 @@ public class MyLinkedList implements Iterator<Integer>{
 	private LNode getNthNode(int n){
 		LNode current = start;
 		for(int index = 0; index < n; index++){
-			current = current.getNext();
+			current = current.next;
 		}
 		return current;
+	}
+
+	private void addAfter(LNode location, LNode toBeAdded){
+		location.next = toBeAdded;
+		toBeAdded.prev = location;
+		toBeAdded.next = location.next;
+		toBeAdded.next.prev = toBeAdded;
 	}
 
 	public int remove(int index){
@@ -98,17 +105,51 @@ public class MyLinkedList implements Iterator<Integer>{
 	    target.next.prev = target.prev;
 		}
     }
-}
+
+    public String toString(){
+    	String result = "[";
+        LNode current = start;
+        while(current != null){
+            result += current.value;
+            if(current.next != null){
+                result +=", ";
+            }
+            current = current.next;
+        }
+        return result + "]";
+    }
 
 	public int get(int index){
-		}
-	public int set(int index, int value){
-		LNode input = new LNode(value);
 		if (index < 0 || index >= size()){
-			throw new IndexOutOfBoundsException;
+			throw new IndexOutOfBoundsException();
 		}
-		if (
-	public int indexOf(int value){}
+		return getNthNode(index).value;
+		}
+
+	public int set(int index, int value){
+		if (index < 0 || index >= size()){
+			throw new IndexOutOfBoundsException();
+		}
+		LNode current = getNthNode(index);
+		int retain = current.value;	
+		current.value = value;
+		return retain;
+	}
+
+	public int indexOf(int value){
+		LNode current = start;
+		int index =0;
+		while(current.next != null){
+			if (current.value == value){
+				return index;
+			}
+			current = current.next;
+			index++;
+		}
+		return -1;
+	}
+
+
 		
 
 
