@@ -1,18 +1,44 @@
-public class MyHeap{
+import.java.util.*;
 
-public MyHeap(){}
+public class MyHeap{	
+
+private ArrayList<String> heap;
+
+public MyHeap(){
+heap = new ArrayList<String>();
+}
 
 public MyHeap(boolean result){
-	if (result = true){
-	r	
-		}
+if (result){
+	MyHeap();
+	}
+else{
+	heap = new ArrayList<String>();
 
-public void add(String s){}
+public void add(String s){
+pushUp()
+}
 
 public String remove(){}
 
 public String peek(){
+	heap.get(1);
+}
 
-private pushUp(){}
+private void pushUp(){
+for (int index = 1; index < heap.length; index++){
+	if ((heap.get(index)) > heap.get(2 * index)){
 
-private pushDown(){}
+}
+}
+
+private void pushDown(){
+for (int index = 1; index < heap.length; index++){
+	if ((heap.get(index)) < heap.get(2 * index)){
+	temp = heap.get(index);
+	heap.get(i) = heap.get(2 * index);
+	heap.get(2 * index) = temp;
+	}
+
+}
+}
