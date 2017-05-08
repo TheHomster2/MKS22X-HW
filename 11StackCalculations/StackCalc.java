@@ -1,6 +1,6 @@
 import java.util.Stack;
 
-public class Postfix{
+public class StackCalc{
 
 	public static double eval(String s){
 		String[] tokens = s.split(" ");
