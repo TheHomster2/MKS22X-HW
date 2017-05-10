@@ -14,7 +14,7 @@ public MyDeque(){
 }
 
 public void addFirst(String s){
-	if (s == null){
+	if (s.equals(null)){
 		throw new NullPointerException("Deque does not permit null elements");
 	}
 	if (size ==  data.length){
@@ -33,7 +33,7 @@ public void addFirst(String s){
 }
 
 public void addLast(String s){
-	if (s == null){
+	if (s.equals(null)){
 		throw new NullPointerException("Deque does not permit null elements");
 	}
 	if (size ==  data.length){
@@ -94,6 +94,15 @@ public String getLast(){
 		throw new NoSuchElementException();
 	}
 	return data[back];
+}
+
+public String toString(){
+	String result = "[";
+	for (int index = 0; index < data.length; index++){
+		result += data[index] + ", ";
+	}
+	result += "]";
+	return result;
 }
 
 }

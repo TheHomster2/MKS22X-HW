@@ -77,6 +77,10 @@ public void swap(int index, int index2){
 	heap.set(index2, temp);
 }
 
+public int size(){
+	return size;
+}
+
  public String toString(){
 	String result = "";
 	for(int index = 1; index < heap.size(); index++){
