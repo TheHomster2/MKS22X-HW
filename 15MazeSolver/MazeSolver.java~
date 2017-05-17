@@ -1,5 +1,4 @@
 import java.util.*
-
 public interface Frontier{
 	public void add(Location);
 	public Location next();	
@@ -20,6 +19,10 @@ public class Location implements Comparable<Location>{
 	else {
 	return distToGoal - other.distToGoal;	
 	}
+
+	public int getLocation(){
+
+}
 }
 
 public Location(int r, int c, Location previous, int distanceToStart, boolean aStar){
@@ -31,14 +34,38 @@ public Location(int r, int c, Location previous, int distanceToStart, boolean aS
 }
 
 public class FrontierPriortyQueue implements Frontier{
-	
+	public void add(Location){}
+	public Location next(){}
 }
 
-public class FrontierQueue implements Frontier{}
+public class FrontierQueue implements Frontier{
+	ArrayList<Location> queue = new ArrayList<Location>();	
+}
 
-public class FrontierStack implements Frontier{}
+public class FrontierStack implements Frontier{
+	ArrayList<Location> stack = new ArrayList<Location>();
+}
 
-public class MazeSolver{}
+public class MazeSolver{
+	public MazeSolver(String filename){
+	this(filename, false)
+}
+
+	public MazeSolver(String filename, boolean animate){
+	File text = new File(filename);
+}
+
+	public void solve(){}
+
+	public void solve(int style){
+	if (style == 0){}
+	else if (style == 1){}
+	else if (style == 2){}
+	else if (style == 3){}
+	else {}
+}	 
+
+}
 
 
 
