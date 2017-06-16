@@ -39,13 +39,11 @@ public static int [] part(int[] data, int start, int end){
 
 	/*
 	int start1 = start;
-
 	while(start < end){
 	if (data[start] >= pivot){
 		swap(data, start, end);
 		end--;
 	}
-
 	if (data[start] < pivot){
 		swap(data, end, start + 1);
 		start++;
@@ -55,19 +53,16 @@ public static int [] part(int[] data, int start, int end){
 	if (data[start] >= pivot){
 		swap(data, end, start);
 	}
-
 	if (data[start] < pivot){
 		swap(data, end, start + 1);
 		start1++;
 	}
-
 	for(int index = start; index < end; index++){
 		if (data[index] < pivot){
 			swap(data, start1, index);
 			start1++;
 		}
 	}
-
 	swap(data, end, start1);
 	return start1;
 	*/
@@ -129,7 +124,3 @@ public static int [] part(int[] data, int start, int end){
 	public static void main(String[] args){
     }
 }
-
-
-
-

@@ -17,19 +17,17 @@ public void addFirst(String s){
 	if (s.equals(null)){
 		throw new NullPointerException("Deque does not permit null elements");
 	}
-	if (size ==  data.length){
+	if (size == data.length){
 		resize();
 	}
-	if (size != 0){
-		if (front < 0){
-			front = data.length - 1;
-		}
-		else{
-			front -= 1;
-		}
-		data[front] = s;
-		size += 1;
+	if(front 	>= 1) {
+	    front --;
 	}
+	if (front == 0){
+		front = data.length - 1;
+	}
+	data[front] = s;
+	size ++;
 }
 
 public void addLast(String s){
@@ -39,30 +37,31 @@ public void addLast(String s){
 	if (size ==  data.length){
 		resize();
 	}
-	if (size != 0){
-		if (back == data.length - 1){
-			back = 0;
-		}
-		else{
-			back -= 1;
-		}
-		data[back] = s;
-		size += 1;
-		}
+	if(back < data.length - 1) {
+	    back++;
 	}
+	else if(back == data.length - 1) {
+	    back = 0;
+	}
+	size++;
+	data[back] = s;
+    }
+		
 public String removeFirst(){
 	if (size < 1){
 		throw new NoSuchElementException();
 	}
 	String temp = data[front];
+	data[front] = null;
 	if (front + 1 == data.length){
 		front = 0;
 	}
 	else{
-		front += 1;
+		front++;
 	}
-	size -= 1;
+	size --;
 	return temp;
+
 }
 
 public String removeLast(){
@@ -70,17 +69,18 @@ public String removeLast(){
 		throw new NoSuchElementException();
 	}
 	String temp = data[back];
-	if (back > 0){
-		back -= 1;
-		size -= 1;
-		return temp;
+	data[back] = null;
+	if(back > 0) {
+	    back--;
+	    size--;
+	    return temp;
 	}
 	else{
-		back = data.length - 1;
-		size -= 1;
-		return temp;
+	    back = data.length - 1;
+	    size--;
+	    return temp;
 	}
-}
+    }
 
 public String getFirst(){
 	if (size < 1){
@@ -96,6 +96,24 @@ public String getLast(){
 	return data[back];
 }
 
+private void resize(){
+	String[] temp = new String [data.length * 2];
+	int var = 0;
+	int index = front;
+	while (var < data.length){
+		temp[var] = data[index];
+		if (index <= data.length){
+			index = 0;	
+		}
+		temp[var] = data[index];
+		var++;
+		index++;
+		}
+		front = 0;
+		data = temp;
+		back = data.length;
+}
+
 public String toString(){
 	String result = "[";
 	for (int index = 0; index < data.length; index++){
@@ -105,4 +123,6 @@ public String toString(){
 	return result;
 }
 
+public static void main(String[] args){
+}
 }

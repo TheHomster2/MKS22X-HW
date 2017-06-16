@@ -17,8 +17,7 @@ public class StackCalc{
 	}
 
 	private static boolean isOperator(String s){
-		char index = s.charAt(0);
-		return (index == '+' || index == '-' || index == '*' || index == '/' || index == '%');
+		return (s.equals("+") || s.equals("-") || s.equals("*") || s.equals("/") || s.equals("%"));
 	}
 
 	private static String apply(String op, String a, String b){
