@@ -165,6 +165,11 @@ public class USACO{
 		}
 
 	public static void main (String []args){
+		/*
+		USACO test = new USACO();
+		System.out.println(test.bronze("bronze1.txt"));
+		System.out.println(test.silver("silver1.txt"));
+		*/
 }	
 }
 

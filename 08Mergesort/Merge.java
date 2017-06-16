@@ -1,63 +1,67 @@
-import java.util.Arrays;
-import java.util.Random;
+public class Merge{
 
-public class Merge {
+	public static void mergesort(int[] ary){
+		if(ary.length <= 1){
+			return;
+		}
 
-  /*
-  Postcondition:
-  destination contains all of the elements of a and b, and is sorted.
-  Preconditions:
-  a is sorted, b is sorted
-  destination.length == a.length + b.length
-  */
-  public static void merge(int[] a, int[] b, int[] destination) {
-    int indexA = 0;
-    int indexB = 0;
-    int indexDes = 0;
+		int [] left = new int [ary.length / 2];
+		int [] right = new int[ary.length - left.length];
+		for(int index = 0; index < ary.length; index++){
+			if(index < left.length){
+				left[index] = ary[index];
+			}
+			else{
+				right[index - left.length] = ary[index];
+			}
+		}
+		if (ary.length > 1){
+		mergesort(left);
+		mergesort(right);
+		merge(left, right, ary);
+	}
+}
 
-    while (indexA < a.length && indexB < b.length) { // until one finishes
-      if (a[indexA] <= b[indexB]) {
-        destination[indexDes] = a[indexA];
-        indexA++;
-        indexDes++;
-      }
-      else if (a[indexA] > b[indexB]) { // need else if or jsut else?
-        destination[indexDes] = b[indexB];
-        indexB++;
-        indexDes++;
-      }
+
+	public static void merge(int[] a, int[] b,int[] destination){
+		int lo = 0;
+		int hi = 0;
+
+		while(lo < a.length && hi < b.length){
+			if(a[lo] < b[hi]){
+				destination[lo + hi] = a[lo];
+				lo++;
+			}
+			else{
+				destination[lo + hi] = b[hi];
+				hi++;
+			}
+		}
+
+		for (int index = lo; index < a.length; index++){
+			destination[index + hi] = a[lo];
+		}
+
+		for (int index = hi; index < b.length; index++){
+			destination[index + lo] = b[hi];
+		}
+		/*
+		while(lo < a.length){
+			for(int count = lo + hi; count < destination.length; count++){
+			destination[count] = a[lo];
+			lo++;
+			}
+		}	
+
+		while(hi < b.length){
+			for(int index2 = lo + hi; index2 < destination.length; index2++){
+			destination[index2] = b[hi];
+			hi++;
+			}
+		}
+		*/
+	}
+
+    public static void main(String[] args) {
     }
-
-    if (indexA < a.length) { //a is longer
-      for (int i = indexA+indexB; i < destination.length; i++) {
-        destination[i] = a[indexA];
-        indexA++;
-      }
-    }
-    else if (indexB < b.length) { // b is longer
-      for (int i = indexA+indexB; i < destination.length; i++) {
-        destination[i] = b[indexB];
-        indexB++;
-      }
-    }
-  }
-
-  public static void mergesort(int[] ary) {
-    if (ary.length == 0) {
-      return;
-    }
-    int half = ary.length / 2;
-    int[] left = Arrays.copyOfRange(ary,0,half);
-    int[] right = Arrays.copyOfRange(ary,half,ary.length);
-
-    if (left.length != 1) {
-      mergesort(left);
-    }
-    if (right.length != 1) {
-      mergesort(right);
-    }
-
-    merge(left,right,ary);
-  }
-
 }

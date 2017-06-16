@@ -87,30 +87,75 @@ public static int [] part(int[] data, int start, int end){
 	}
 
 	private static int quickselectH(int[] data, int k, int start, int end){
-		int [] index = part(data, start, end);
+	int random = start + (int)(Math.random() * (end - start + 1));
+	int pivot = data[random];
+	swap(data, pivot, end);
+	int lt = start;
+	int i = start + 1;
+	int gt = end;
+	int[] temp = new int [2];
 
-		if (k == index[0]){
-			return data[k];
+	while(i <= gt){
+		if (data[i] == pivot){
+			i++;
 		}
-		if (k < index[0]){
-			return quickselectH(data, k, start, index[0]);
+
+		else if (data[i] < pivot){
+			swap(data, i, lt);
+			lt++;
+			i++;
+		}
+
+		else{
+			swap(data, i, gt);
+			gt--;
+		}
+	}
+		if (k < lt){
+			return quickselectH(data, k, start, lt - 1);
+		}
+		else if (k > gt){
+			return quickselectH(data, k, gt + 1, end);
 		}
 		else{
-			return quickselectH(data, k, index[0], end);
+			return data[k];
 		}
 	}
 
 	public static void quicksort(int[] data){
+		if (data.length > 0){
 		quicksortH(data, 0, data.length - 1);
+	}
 	}
 
 	public static void quicksortH(int[] data, int start, int end){
-		if (start + 1 < end){
-			int [] index = part(data, start, end);
-			quicksortH(data, start, index[0]);
-			quicksortH(data, index[1], end);
+	int random = start + (int)(Math.random() * (end - start + 1));
+	int pivot = data[random];
+	swap(data, pivot, end);
+	int lt = start;
+	int i = start + 1;
+	int gt = end;
+	int[] temp = new int [2];
+
+	while(i <= gt){
+		if (data[i] == pivot){
+			i++;
+		}
+
+		else if (data[i] < pivot){
+			swap(data, i, lt);
+			lt++;
+			i++;
+		}
+
+		else{
+			swap(data, i, gt);
+			gt--;
 		}
 	}
+			quicksortH(data, gt, end);
+			quicksortH(data, start, lt - 1);
+}
 
 	public static String toString(int[] data){
 		String result = "[";
@@ -123,4 +168,4 @@ public static int [] part(int[] data, int start, int end){
 
 	public static void main(String[] args){
     }
-}
+} 
