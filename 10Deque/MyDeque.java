@@ -20,7 +20,7 @@ public void addFirst(String s){
     if (size == data.length){
         resize();
     }
-    if(front    >= 1) {
+    if(front >= 1) {
         front --;
     }
     if (front == 0){
