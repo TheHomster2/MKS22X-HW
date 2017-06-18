@@ -151,7 +151,7 @@ public class USACO{
 					if (c < col - 1 && pasture[r][c + 1] != -1){
 						total += pasture[r][c + 1];
 					}
-					temp[r][c] += total;
+					temp[r][c] = total;
 						}
 					}
 				}
@@ -172,6 +172,3 @@ public class USACO{
 		*/
 }	
 }
-
-
-
